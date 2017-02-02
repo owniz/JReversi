@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -52,7 +53,7 @@ public class Tablero extends JFrame implements ActionListener {
 		
 		jmiNuevaPartida = new JMenuItem("Nueva partida");
 		jmiSalir = new JMenuItem("Salir");
-		jmiAyuda = new JMenuItem("Cómo jugar");
+		jmiAyuda = new JMenuItem("Ayuda");
 		jmiVersion = new JMenuItem("Versión");
 		
 		jmiNuevaPartida.addActionListener(this);
@@ -234,8 +235,9 @@ public class Tablero extends JFrame implements ActionListener {
 		else if(e.getSource() == jmiSalir)
 			System.exit(0);
 		else if(e.getSource() == jmiAyuda)
-			JOptionPane.showMessageDialog(this, "Intenta atrapar entre colores las fichas del contrario"
-												+ "\ntanto en horizontal y vertical como en diagonal.");
+			try {
+				Runtime.getRuntime().exec("hh.exe help/jreversi_help.chm");
+			} catch(IOException ex) {}
 		else if(e.getSource() == jmiVersion)
 			JOptionPane.showMessageDialog(this, "Version 0.9\n\nJavier Morales\nLuis Morales");
 	}
